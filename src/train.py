@@ -25,21 +25,21 @@ def load_data(data_dir):
     
     print("Loading Data... This might take a minute.")
     
-    # We loop through all 43 classes folders
+    # loop through all 43 classes folders
     for i in range(NUM_CLASSES):
         path = os.path.join(data_dir, 'Train', str(i))
         img_folder = os.listdir(path)
         
         for img_name in img_folder:
             try:
-                # 1. Read Image
+                # Read Image
                 img_path = os.path.join(path, img_name)
                 image = cv2.imread(img_path)
                 
-                # 2. Resize to 32x32
+                # Resize to 32x32
                 image = cv2.resize(image, (IMG_WIDTH, IMG_HEIGHT))
                 
-                # 3. Add to list
+                # Add to list
                 images.append(image)
                 labels.append(i)
             except Exception as e:
@@ -54,20 +54,20 @@ def load_data(data_dir):
     return images, labels
 
 def main():
-    # 1. Load and Preprocess
+    # Load and Preprocess
     X, y = load_data(DATA_DIR)
     
-    # 2. Split Data (80% Train, 20% Validation)
+    # Split Data (80% Train, 20% Validation)
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
     
-    # 3. One-hot encode labels (e.g., Class 3 becomes [0,0,0,1,0...])
+    # One-hot encode labels (e.g., Class 3 becomes [0,0,0,1,0...])
     y_train = to_categorical(y_train, NUM_CLASSES)
     y_val = to_categorical(y_val, NUM_CLASSES)
     
     print(f"Training Data Shape: {X_train.shape}")
     print(f"Validation Data Shape: {X_val.shape}")
 
-    # 4. Data Augmentation (Fixes Class Imbalance & Overfitting)
+    # Data Augmentation (Fixes Class Imbalance & Overfitting)
     # This creates new variations of images (zoomed, rotated) on the fly
     datagen = ImageDataGenerator(
         rotation_range=10,
@@ -79,14 +79,14 @@ def main():
         fill_mode="nearest"
     )
     
-    # 5. Build and Train Model
+    # Build and Train Model
     model = build_model(input_shape=(IMG_HEIGHT, IMG_WIDTH, CHANNELS), num_classes=NUM_CLASSES)
     
     history = model.fit(datagen.flow(X_train, y_train, batch_size=BATCH_SIZE),
                         epochs=EPOCHS,
                         validation_data=(X_val, y_val))
     
-    # 6. Save the Model
+    # Save the Model
     if not os.path.exists('../models'):
         os.makedirs('../models')
     model.save('../models/traffic_classifier.h5')
