@@ -8,3 +8,4 @@ jupyter
 pydot 
 graphviz
 seaborn
+streamlit
