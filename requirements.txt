@@ -1,11 +1,5 @@
+streamlit>=1.30.0
+tensorflow-cpu
+opencv-python-headless
 numpy
-pandas
-matplotlib
-opencv-python
-scikit-learn
-tensorflow 
-jupyter
-pydot 
-graphviz
-seaborn
-streamlit
+pillow
