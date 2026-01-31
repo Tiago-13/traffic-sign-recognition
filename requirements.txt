@@ -9,4 +9,3 @@ pydot
 graphviz
 seaborn
 streamlit
-protobuf==3.20.3
