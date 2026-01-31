@@ -1,6 +1,6 @@
 # Traffic Sign Recognition
 
-A Deep Learning project that classifies traffic signs with high accuracy using a Convolutional Neural Network (CNN). The project includes a training pipeline, a visual evaluation dashboard and an interactive desktop application for real-time predictions.
+A Deep Learning project that classifies traffic signs with high accuracy using a Convolutional Neural Network (CNN). The project includes a training pipeline, an in-depth error analysis, and a modern web dashboard for real-time predictions.
 
 ## Preview
 ![App Preview](assets/app_preview.png)
@@ -26,9 +26,14 @@ The model was trained for 15 epochs on the German Traffic Sign Recognition Bench
 * **Top Performing Classes:** Stop signs (100%), Speed Limits, and Keep Left.
 * **Challenging Classes:** Beware of Ice/Snow (Class 30) due to visual similarity with other triangular warning signs.
 
+### Model Analysis
+An error analysis was conducted using a Confusion Matrix and other tools on the test set.
+
 ## Challenges and Solutions
 * **Class Imbalance:** Some classes (like Speed limit 50) had 2000+ images while others (Speed limit 20) had fewer than 200.
     * *Solution:* Implemented on-the-fly Data Augmentation (rotation, zoom, shear) to artificially increase the variety of the minority classes during training.
+* **Color Space Mismatch (Web vs. Model):** The model was trained on OpenCV images (BGR), but the web uploader provides PIL images (RGB), causing initial prediction failures.
+    * *Solution:* Implemented a preprocessing layer in the web app to strictly convert all incoming image arrays from RGB to BGR before inference.
 
 
 ## Installation & Usage
