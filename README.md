@@ -44,9 +44,9 @@ pip install -r requirements.txt
 ```
 
 ### 2. Run the App
-To upload your own images and see the model in action:
+To upload your own images and see the model working in a interactive dashboard in your browser:
 ```bash
-python src/app.py
+streamlit run src/web_app.py
 ```
 
 ### 3. Training & Evaluation
