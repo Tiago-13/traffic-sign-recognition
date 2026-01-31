@@ -2,6 +2,10 @@
 
 A Deep Learning project that classifies traffic signs with high accuracy using a Convolutional Neural Network (CNN). The project includes a training pipeline, an in-depth error analysis, and a modern web dashboard for real-time predictions.
 
+**Try the app instantly on your phone or computer:**
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://traffic-sign-recognition13.streamlit.app/)
+
 ## Preview
 ![App Preview](assets/app_preview.png)
 
